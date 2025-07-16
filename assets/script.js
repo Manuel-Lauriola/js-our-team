@@ -37,21 +37,32 @@ const teamMembers = [
   }
 ];
 
+
 //dichiaro la funzione che includa le variabili prese dai singoli oggetti in una variabile del mio html
 const generateCard = (member) => {
   const card = `<div class="card mb-3 col-4">
-  <div class="row g-0">
+  <div class="row g-0 bg-black">
     <div class="col-md-4">
-      <img src="${member.img}" class="img-fluid rounded-start" alt="...">
+      <img src="./assets/${member.img}" class="img-fluid rounded-start" alt="#">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">${member.name}</h5>
-        <p class="card-text">${member.role}</p>
-        <p class="card-text"><small class="text-body-secondary">${member.email}</small></p>
+        <h5 class="card-title text-light">${member.name}</h5>
+        <p class="card-text text-light">${member.role}</p>
+        <p class="card-text"><small class="text-body-secondary"><a href="#">${member.email}</a></small></p>
       </div>
     </div>
   </div>
 </div>`
 return card
+}
+
+//prendo dall'html la variabile dove inserirò le cards
+const album = document.getElementById('album')
+
+//ciclo l'array di oggetti in modo da assegnare i valori in ogni card
+for (let i=0; i<teamMembers.length; i++) {
+  let memberCard = generateCard(teamMembers[i])
+  //le inserisco all'interno dell'album
+  album.innerHTML += memberCard
 }
